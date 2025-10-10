@@ -23,3 +23,14 @@ jobs:
           test -f schemas/records/synapse_record.schema.yaml
           test -f schemas/records/provenance_record.schema.yaml
           test -f schemas/records/congruence_engine.schema.yaml
+  congruence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run congruence calculator (tolerant check)
+        run: |
+          python tools/congruence/calc.py summaries/congruence/*.json || true
