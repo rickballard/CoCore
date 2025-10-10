@@ -1,0 +1,17 @@
+$id: https://cocivium.org/schemas/congruence_record.schema.yaml
+type: object
+required: [id, rubric, weights, method, version]
+properties:
+  id: {type: string}
+  version: {type: string}
+  rubric: {type: array}
+  weights: {type: object}
+  method: {type: string}
+  calculator_ref: {type: string}
+  outputs:
+    type: object
+    properties:
+      score: {type: number}
+      components: {type: object}
+      uncertainty: {type: number}
+  provenance: {type: string}

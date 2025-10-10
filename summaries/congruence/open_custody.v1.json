@@ -1,0 +1,10 @@
+{
+  "id": "congruence.record.open_custody.v1",
+  "version": "0.0.1",
+  "rubric": ["transparency","coercion_avoidance","resilience","equity"],
+  "weights": {"transparency":0.3,"coercion_avoidance":0.3,"resilience":0.25,"equity":0.15},
+  "method": "weighted geometric mean with negative-externality penalty",
+  "calculator_ref": "tools/congruence/calc.py",
+  "outputs": {"score": 0.82, "components": {"transparency":0.88,"coercion_avoidance":0.79,"resilience":0.8,"equity":0.68}, "uncertainty": 0.18},
+  "provenance": "evidence/provenance/example_prov.json"
+}

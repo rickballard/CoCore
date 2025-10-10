@@ -1,0 +1,76 @@
+meta:
+  created: "'"$TS"'"
+  notes: Open items are mirrorable; paywalled items flagged as "restricted".
+items:
+  - id: BIS.BaselIII.Liquidity
+    title: Basel III — LCR and liquidity risk monitoring tools
+    org: BIS
+    year: 2013
+    url: https://www.bis.org/publ/bcbs238.htm
+    license: Open (BIS site)
+    access: open
+    mirror: bis/bcbs238.html
+  - id: BIS.BaselIII.NSFR
+    title: Basel III — Net Stable Funding Ratio
+    org: BIS
+    year: 2014
+    url: https://www.bis.org/bcbs/publ/d295.htm
+    license: Open (BIS site)
+    access: open
+    mirror: bis/d295.html
+  - id: W3C.DID.Core
+    title: Decentralized Identifiers (DIDs) v1.0
+    org: W3C
+    year: 2022
+    url: https://www.w3.org/TR/did-core/
+    license: W3C Document License
+    access: open
+    mirror: w3c/did-core.html
+  - id: W3C.VC.DataModel
+    title: Verifiable Credentials Data Model v2.0
+    org: W3C
+    year: 2024
+    url: https://www.w3.org/TR/vc-data-model-2.0/
+    license: W3C Document License
+    access: open
+    mirror: w3c/vc-data-model-2.html
+  - id: FATF.40
+    title: The FATF Recommendations
+    org: FATF
+    year: 2012
+    url: https://www.fatf-gafi.org/en/publications/Fatf-recommendations.html
+    license: Open
+    access: open
+    mirror: fatf/recommendations.html
+  - id: EU.GDPR
+    title: General Data Protection Regulation
+    org: EUR-Lex
+    year: 2016
+    url: https://eur-lex.europa.eu/eli/reg/2016/679/oj
+    license: Open
+    access: open
+    mirror: eu/gdpr.html
+  - id: NIST.SP800-53r5
+    title: Security and Privacy Controls (SP 800-53r5)
+    org: NIST
+    year: 2020
+    url: https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final
+    license: Public Domain (US)
+    access: open
+    mirror: nist/sp800-53r5.html
+  - id: IETF.RFC6749
+    title: The OAuth 2.0 Authorization Framework
+    org: IETF
+    year: 2012
+    url: https://www.rfc-editor.org/rfc/rfc6749
+    license: Open (IETF)
+    access: open
+    mirror: ietf/rfc6749.txt
+  - id: GHG.Proto2023
+    title: Greenhouse Gas Protocol — Corporate Standard
+    org: WRI/WBCSD
+    year: 2023
+    url: https://ghgprotocol.org/corporate-standard
+    license: Open
+    access: open
+    mirror: ghg/corporate-standard.html

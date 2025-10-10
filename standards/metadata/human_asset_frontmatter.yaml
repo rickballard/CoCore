@@ -1,0 +1,18 @@
+required:
+  - title
+  - version
+  - authors
+  - urn
+  - layer
+  - tags
+  - maturity
+  - readiness
+  - jurisdictions
+  - congruence_ref
+  - provenance_ref
+  - warning_gate
+footer_flags:
+  - congruence_score
+  - evidence_hash
+  - build_receipt_id
+  - signature

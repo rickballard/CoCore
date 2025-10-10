@@ -1,0 +1,16 @@
+$id: https://cocivium.org/schemas/congruence_engine.schema.yaml
+type: object
+required: [id, api, io_contract, version]
+properties:
+  id: {type: string}
+  version: {type: string}
+  api:
+    type: object
+    properties:
+      entrypoint: {type: string}
+      interface: {type: string}
+  io_contract:
+    type: object
+    properties:
+      input_schema_ref: {type: string}
+      output_schema_ref: {type: string}

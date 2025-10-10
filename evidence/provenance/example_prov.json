@@ -1,0 +1,1 @@
+{"id":"prov.example.1","source":"https://example.org/paper","integrity":{"sha256":"deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef","signed_by":"CoCore/Signer"},"trust":{"merit_rank":0.72,"consensus":0.64,"recency_days":45,"conflicts_declared":true},"license":"CC-BY-4.0","notes":"Illustrative only."}

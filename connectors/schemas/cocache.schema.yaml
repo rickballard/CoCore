@@ -1,0 +1,5 @@
+id: connector.placeholder
+capabilities: []
+auth: [bearer|local|none]
+events: []
+models: []

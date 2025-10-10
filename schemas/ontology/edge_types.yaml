@@ -1,0 +1,19 @@
+types:
+  - requires
+  - aligns_with
+  - satisfies
+  - contradicts
+  - supersedes
+  - governed_by
+  - evidenced_by
+  - implements
+  - measures_with
+  - migrates_from
+  - relates_to
+  - competes_with
+  - substitutes_for
+  - externalizes_to
+  - coupled_with
+  - powered_by
+  - decided_by
+  - moderated_by

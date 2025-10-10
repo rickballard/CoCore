@@ -1,0 +1,31 @@
+$id: https://cocivium.org/schemas/model_record.schema.yaml
+type: object
+required: [id, urn, title, summary, status, congruence]
+properties:
+  id: {type: string}
+  urn: {type: string}
+  layer: {type: string}
+  path: {type: string}
+  version: {type: string}
+  title: {type: string}
+  summary: {type: string}
+  status:
+    type: object
+    required: [maturity, readiness]
+    properties:
+      maturity: {type: string, pattern: "^M[0-5]$"}
+      readiness: {type: string, pattern: "^R[0-5]$"}
+      deprecation: {type: [string, "null"]}
+  jurisdictions: {type: array}
+  obligations: {type: object}
+  interfaces: {type: object}
+  controls: {type: object}
+  evidence: {type: object}
+  migration: {type: object}
+  risks: {type: array}
+  congruence:
+    type: object
+    required: [score]
+    properties:
+      score: {type: number, minimum: 0, maximum: 1}
+  edges: {type: array}

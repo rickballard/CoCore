@@ -1,0 +1,14 @@
+gate_version: v1
+blocks:
+  - id: readiness_below_threshold
+    rule: "status.readiness < R2"
+    action: "warn"
+    message: "This model is below R2. Field deployment not advised."
+  - id: coercive_domain
+    rule: "layer == 'coclusta' and path startswith 'patterns/minimal_force'"
+    action: "warn"
+    message: "Coercive domain: ensure oversight hooks and proportionality tests."
+  - id: missing_evidence
+    rule: "len(evidence.sources) == 0"
+    action: "warn"
+    message: "Evidence is missing. Treat as experimental."

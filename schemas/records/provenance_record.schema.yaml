@@ -1,0 +1,12 @@
+$id: https://cocivium.org/schemas/provenance_record.schema.yaml
+type: object
+required: [id, source, integrity]
+properties:
+  id: {type: string}
+  source: {type: string}
+  integrity:
+    type: object
+    properties:
+      sha256: {type: string}
+      signed_by: {type: string}
+  trust: {type: object}
