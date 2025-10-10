@@ -1,16 +1,23 @@
-# CoCore — Advice Bomb v3 (Planning-Complete Drop)
+# CoCore
 
-This repository includes a planning-complete Advice Bomb for CoCore — a **graph-native, safety-first** best-practice
-knowledge base for CoSuite (CoAgent, CoModules, etc.). This drop adds:
 
-- A **global references catalog** (`references/catalog.yaml`) and a PS7 **DO block** (`tools/ps/DO-FetchReferences.ps1`)
-  to mirror **openly accessible** standards locally under `references/mirrors/` (with SHA-256 receipts).
-- Foundational planning docs: Charter & Red-Lines, Ontology Constitution, Evidence Standard, Readiness Policy,
-  Teleconnections & Externalities Policy, CoerceScope Summary, Referencing guide.
-- Congruence as a **first-class asset** (schema + calculator contract), standard human-asset header/footer flags.
-- Safety gates (Disclaimers & WARNING_GATE), Governance roles (CoNucla), Synapse semantics (CoSyna).
-- Connector catalog (CoCache, CoRef, CoAgent, RegTwin, MeritRank/RepTag, GIBindex/CoWords, Evidence, Jurisdiction overlays).
 
-> To fetch open references locally, run:
-> `pwsh ./tools/ps/DO-FetchReferences.ps1`
+[![Open issues](https://img.shields.io/github/issues/rickballard/CoCore)](../../issues) [![PRs](https://img.shields.io/github/issues-pr/rickballard/CoCore)](../../pulls) [![License](https://img.shields.io/github/license/rickballard/CoCore)](./LICENSE)
 
+Human-friendly overview + Megascroll
+
+### Quick start
+- **Read**: the Megascroll (single-page canon) if present.
+- **Skim**: the Canon Index to jump to what you need.
+- **Contribute**: open a Discussion, then a small PR.
+
+## Explore
+_(Content map will grow as repo fills out.)_
+
+<details>
+<summary><b>For maintainers / ops</b></summary>
+
+- Scripts live under ops/ and .github/.
+- Seed-kit: see CoCache → ops/kits/Build-CoSuiteSeedKit.ps1.
+
+</details>
