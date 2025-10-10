@@ -76,3 +76,4 @@ $prov -join "`n" | Set-Content -Path $ProvPath -Encoding UTF8
 
 Write-Host "Created pattern scaffold at $BaseDir" -ForegroundColor Green
 
+
