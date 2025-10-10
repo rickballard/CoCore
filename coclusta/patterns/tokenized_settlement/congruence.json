@@ -1,11 +1,30 @@
 {
   "id": "congruence.record.TBD",
   "version": "0.0.1",
-  "rubric": ["transparency","coercion_avoidance","resilience","equity"],
-  "weights": {"transparency":0.3,"coercion_avoidance":0.3,"resilience":0.25,"equity":0.15},
+  "rubric": [
+    "transparency",
+    "coercion_avoidance",
+    "resilience",
+    "equity"
+  ],
+  "weights": {
+    "transparency": 0.3,
+    "coercion_avoidance": 0.3,
+    "resilience": 0.25,
+    "equity": 0.15
+  },
   "method": "weighted geometric mean with optional penalty",
   "calculator_ref": "tools/congruence/calc.py",
-  "outputs": {"score": 0.0, "components": {"transparency":0.7,"coercion_avoidance":0.7,"resilience":0.7,"equity":0.7}, "uncertainty": 0.2},
+  "outputs": {
+    "score": 0.7,
+    "components": {
+      "transparency": 0.7,
+      "coercion_avoidance": 0.7,
+      "resilience": 0.7,
+      "equity": 0.7
+    },
+    "uncertainty": 0.2
+  },
   "penalty": 1.0,
   "provenance": ""
 }
