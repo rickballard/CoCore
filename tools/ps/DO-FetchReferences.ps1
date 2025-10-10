@@ -1,4 +1,4 @@
-# DO — Fetch open references listed in references/catalog.yaml (robust YAML)
+# DO — Fetch open references listed in references/catalog.yaml
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
@@ -9,17 +9,43 @@ $OutRoot   = Join-Path $RepoRoot "references\mirrors"
 $Checksums = Join-Path $OutRoot "checksums.json"
 
 if (-not (Test-Path $Catalog)) { throw "Catalog not found: $Catalog" }
-if (-not (Get-Command ConvertFrom-Yaml -ErrorAction SilentlyContinue)) {
-  throw "ConvertFrom-Yaml not found. PowerShell 7.2+ required (Microsoft.PowerShell.Utility module)."
+if (-not (Test-Path $OutRoot)) { New-Item -ItemType Directory -Path $OutRoot | Out-Null }
+
+function Parse-Catalog {
+  param([string]$Path)
+  $text = Get-Content $Path -Raw
+  # Try ConvertFrom-Yaml first (if available)
+  if (Get-Command -Name ConvertFrom-Yaml -ErrorAction SilentlyContinue) {
+    $yaml = $text | ConvertFrom-Yaml
+    if ($null -eq $yaml -or $null -eq $yaml.items) { throw "YAML missing 'items' node." }
+    return ,$yaml.items
+  }
+  # YAML-lite fallback: find the items block and parse "- id:" entries + simple "key: value" lines
+  $lines = $text -split "`n"
+  $start = ($lines | Select-String -SimpleMatch 'items:' | Select-Object -First 1).LineNumber
+  if (-not $start) { throw "'items:' section not found" }
+  $items = @()
+  $current = $null
+  for ($i = $start; $i -lt $lines.Count; $i++) {
+    $ln = $lines[$i]
+    if ($ln -match '^\s*-\s*id:\s*(.+)\s*$') {
+      if ($current) { $items += [pscustomobject]$current }
+      $current = @{ id = ($Matches[1].Trim().Trim("'`"")) }
+      continue
+    }
+    if ($ln -match '^\s+(\w+):\s*(.+?)\s*$' -and $null -ne $current) {
+      $k = $Matches[1]; $v = $Matches[2].Trim().Trim("'`"")
+      $current[$k] = $v
+      continue
+    }
+    if ($ln -match '^\S') { break } # left the items block
+  }
+  if ($current) { $items += [pscustomobject]$current }
+  if (-not $items) { throw "No entries parsed in catalog 'items:'" }
+  return ,$items
 }
 
-# Parse YAML properly
-$yaml = Get-Content $Catalog -Raw | ConvertFrom-Yaml
-$items = @()
-if ($null -ne $yaml -and $null -ne $yaml.items) { $items = $yaml.items } else { throw "YAML catalog missing 'items'." }
-
-# Ensure mirrors directory
-if (-not (Test-Path $OutRoot)) { New-Item -ItemType Directory -Path $OutRoot | Out-Null }
+$items = Parse-Catalog -Path $Catalog
 
 $dl = @()
 foreach ($it in $items) {
@@ -37,7 +63,7 @@ foreach ($it in $items) {
 
   try {
     Write-Host "Downloading $id -> $Target"
-    Invoke-WebRequest -Uri $url -OutFile $Target -UseBasicParsing -TimeoutSec 240
+    Invoke-WebRequest -Uri $url -OutFile $Target -UseBasicParsing -TimeoutSec 300
     $sha = (Get-FileHash -Algorithm SHA256 $Target).Hash.ToLower()
     $rel = $Target.Replace($RepoRoot+'\','')
     $dl += [pscustomobject]@{ id=$id; path=$rel; sha256=$sha; ts=(Get-Date).ToString('s') }
@@ -46,6 +72,5 @@ foreach ($it in $items) {
   }
 }
 
-# Write checksum receipt
 @{ items = $dl } | ConvertTo-Json -Depth 5 | Set-Content -Path $Checksums -Encoding UTF8
 Write-Host "`nMirrored $($dl.Count) open references to $OutRoot" -ForegroundColor Green
