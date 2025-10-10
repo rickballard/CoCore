@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import json, math, sys, argparse, pathlib
+import json, math, sys, argparse, pathlib, glob, os
 def geom_weighted(components, weights):
     s = sum(weights.values())
     if s <= 0: raise ValueError("weights sum must be > 0")
@@ -23,12 +23,26 @@ def calc_record(rec):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("files", nargs="+")
-    ap.add_argument("--tol", type=float, default=0.05)
-    ap.add_argument("--write", action="store_true")
-    ap.add_argument("--strict", action="store_true")
-    args = ap.parse_args()
+args = ap.parse_args()
+
+# Expand Windows wildcards and directories
+paths = []
+for a in args.files:
+    if any(ch in a for ch in "*?[]"):
+        paths += glob.glob(a, recursive=True)
+    elif os.path.isdir(a):
+        for root, _, files in os.walk(a):
+            for fn in files:
+                if fn.lower().endswith(".json"):
+                    paths.append(os.path.join(root, fn))
+    else:
+        paths.append(a)
+paths = sorted(set(paths))
+if not paths:
+    print("No input files matched.")
+    sys.exit(0)
     ok = True
-    for f in args.files:
+    for f in paths:
         p = pathlib.Path(f)
         rec = json.loads(p.read_text(encoding="utf-8"))
         base, computed = calc_record(rec)
@@ -42,3 +56,4 @@ def main():
     if not ok and args.strict: sys.exit(1)
     print("OK" if ok else "DIFF>tol"); sys.exit(0 if ok else 1)
 if __name__ == "__main__": main()
+

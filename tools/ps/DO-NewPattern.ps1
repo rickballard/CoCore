@@ -10,7 +10,7 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
-$RepoRoot  = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
+$RepoRoot  = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path))
 $BaseDir   = Join-Path $RepoRoot ("coclusta\patterns\{0}" -f $Name)
 $BriefPath = Join-Path $BaseDir "brief.md"
 $SumPath   = Join-Path $BaseDir "congruence.json"
@@ -75,3 +75,4 @@ $prov += '  "license":"", "notes":"" }'
 $prov -join "`n" | Set-Content -Path $ProvPath -Encoding UTF8
 
 Write-Host "Created pattern scaffold at $BaseDir" -ForegroundColor Green
+
