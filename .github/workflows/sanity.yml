@@ -1,0 +1,25 @@
+name: CoCore sanity checks
+on:
+  pull_request:
+  push:
+    branches: [ ab/cocore-advicebomb-v3, main, master ]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Install deps
+        run: pip install pyyaml
+      - name: Validate example asset front-matter
+        run: python tools/validators/validate_frontmatter.py examples/assets/example_pattern.md
+      - name: Ensure schemas exist
+        run: |
+          test -f schemas/records/model_record.schema.yaml
+          test -f schemas/records/congruence_record.schema.yaml
+          test -f schemas/records/synapse_record.schema.yaml
+          test -f schemas/records/provenance_record.schema.yaml
+          test -f schemas/records/congruence_engine.schema.yaml

@@ -1,0 +1,17 @@
+# CODEOWNERS — require eyes on sensitive changes
+# Adjust handles below as your org/team evolves.
+# Everything default to repo owner:
+* @rickballard
+
+# Safety, coercive, and governance docs must be reviewed:
+safety/**              @rickballard
+docs/COERCE_SCOPE_*    @rickballard
+docs/READINESS_*       @rickballard
+docs/EVIDENCE_*        @rickballard
+docs/ONTOLOGY_*        @rickballard
+
+# Patterns (policy templates) need review:
+coclusta/patterns/**   @rickballard
+
+# Connectors contracts:
+connectors/**          @rickballard
